@@ -1,0 +1,19 @@
+{
+  "name": "product-list-react-app",
+  "version": "1.0.0",
+  "description": "На странице /products вывести список карточек продуктов по несколько в ряд (Использовать display: grid). Должны отображаться картинка, название и цена.\r Реализовать api запрос\r При первоначальной загрузке, вывести 8 продуктов\r Добавить три кнопки для загрузки разного количества товаров.\r кнопка – 8 продуктов\r кнопка – 16 продуктов\r кнопка – все продукты (или 20 штук)\r * Реализовать поиск, вывести список существующих категорий и реализовать фильтрацию при нажатии",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavlenkodim/product-list-react-app.git"
+  },
+  "author": "Dmitry Pavlenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavlenkodim/product-list-react-app/issues"
+  },
+  "homepage": "https://github.com/pavlenkodim/product-list-react-app#readme"
+}
