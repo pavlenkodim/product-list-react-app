@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Products.css"
 
-const Products = () => {
+const Products = (props) => {
     return(
         <div className="products">
             <h1>Products</h1>
