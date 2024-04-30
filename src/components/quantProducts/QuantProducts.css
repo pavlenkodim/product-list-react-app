@@ -1,0 +1,7 @@
+.quant_products {
+    display: grid; 
+    grid-template-columns: repeat(4, 50px);
+    grid-template-rows: auto;
+    align-items: center;
+    column-gap: 5px;
+}
