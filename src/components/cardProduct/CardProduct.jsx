@@ -7,7 +7,7 @@ import './CardProduct.css'
 const CardProduct = ({ data }) => {
     return (
         <div className="card" id={data.id}>
-            <Card style={{width: 240 }} cover={<img alt={data.title} src={data.image} />}>
+            <Card style={{width: 250 }} cover={<img alt={data.title} src={data.image} />}>
                 <Meta title={data.title} description={data.category} />
                 <div>
                     <h2>{data.price} $</h2> 
