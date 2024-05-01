@@ -18,7 +18,7 @@ const CountCards = (props) => {
     
     const elements = cards.map(item => {
         return(
-            <CardProduct data={item} />
+            <CardProduct data={item} key={item.id} />
         )
     })
 
