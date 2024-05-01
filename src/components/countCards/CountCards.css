@@ -1,0 +1,17 @@
+.count_cards {
+    display: grid; 
+    grid-template-columns: repeat(4, 50px);
+    grid-template-rows: auto;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.products_container {
+    margin: 20px 0px;
+    max-width: 1280px;
+    min-width: 320px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    gap: 20px;
+    justify-content: space-between;
+  }
