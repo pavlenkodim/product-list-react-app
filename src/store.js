@@ -28,7 +28,8 @@ export const useButomCountCard = create((set, get) => ({
 
 export const useCards = create((set) => ({
     cards: [],
-    getCard: (limit, btn) => async (state) => { 
+    getCard: (limit, btn) => async (state) => {
+        console.log('getCard', limit, btn) 
         btn()
         const res = await axios('https://fakestoreapi.com/products', {
             method: 'GET',
