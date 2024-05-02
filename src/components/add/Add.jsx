@@ -7,44 +7,44 @@ const Add = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
     
     const onSubmit = (data) => {
         console.log(data)
     }
-    
-    console.log(watch("example"))
        
     return(
         <div className="add">
             <h1>Add</h1>
             <form className="form_add" onSubmit={handleSubmit(onSubmit)}>
-                {/* register your input into the hook by invoking the "register" function */}
                 <div>
-                    <label htmlFor="title">Title: </label>
-                    <input id="title" {...register("title", { required: true })} />
-                    {errors.title && <span className="input_error" >This field is required</span>}
+                    <div>
+                        <label htmlFor="title">Title: </label>
+                    </div>
+                    <input id="title" className="input_field" {...register("title", { required: true })} />
+                    {errors.title && <span className="input_error" > This field is required</span>}
                 </div>
                 <div>
-                    <label htmlFor="description">Description: </label>
-                    <input id="description" {...register("decription", { required: true })} />
-                    {errors.description && <span className="input_error" >This field is required</span>}
+                    <div>
+                        <label htmlFor="description">Description: </label>
+                    </div>
+                    <input id="description" className="input_field" {...register("decription", { required: true })} />
+                    {errors.description && <span className="input_error" > This field is required</span>}
                 </div>
                 <div>
-                    {/* include validation with required or other standard HTML validation rules */}
-                    <label htmlFor="price">Price: </label>
-                    <input id="price" {...register("price", { required: true, pattern: /\d/g })} />
-                    {errors.price && <span className="input_error">This field is required and need only numbers</span>}
+                    <div>
+                        <label htmlFor="price">Price: </label>
+                    </div>
+                    <input id="price" className="input_field" {...register("price", { required: true, pattern: /\d/g })} />
+                    {errors.price && <span className="input_error"> This field is required and need only numbers</span>}
                 </div>
                 <div>
                     <label htmlFor="public">Public</label>
                     <input id="public" type="checkbox" {...register("public", { required: false })} />
-                    {/* errors will return when field validation fails  */}
                 </div>
             
-                <input type="submit" />
+                <input id="submit" type="submit" value={'Add product'}/>
             </form>
         </div>
     )
