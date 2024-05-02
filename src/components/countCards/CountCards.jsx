@@ -34,7 +34,7 @@ const CountCards = (props) => {
         console.log("Render component")
 
         getCard(limit, defaults)();
-        // getCategorues; //TODO: Не работате, похоже не корректный ответ от сервера.
+        getCategorues()(); //TODO: Не работате, похоже не корректный ответ от сервера.
       }, []);
 
     return (

@@ -39,29 +39,21 @@ export const useCards = create((set, get) => ({
             console.error(error)
         }
     },
-    categories: [
-        {
-            value: 'electronics',
-            label: 'Electronics',
-        },
-        {
-            value: 'jewelery',
-            label: 'Jewelery',
-        },
-        {
-            value: "men's clothing",
-            label: "Men's clothing",
-        },
-        {
-            value: "women's clothing",
-            label: "Women's clothing",
-        },
-    ],
+    categories: [],
     getCategorues: () => async (state) => { //TODO: Здесь нужно получить массив с категориями и привести его к виду - categiryes: []
         try {
             const res = await axios.get('https://fakestoreapi.com/products/categories')
-            console.log(res)
-            set({categories: res.data})
+            console.log(res.data)
+
+            const result = res.data.map(item => {
+                const label = item[0].toUpperCase() + item.slice(1)
+                return {
+                    value: item,
+                    label
+                }
+            })
+
+            set({categories: result})
         } catch (error) {
             console.error(error)
         }
