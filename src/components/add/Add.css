@@ -1,0 +1,48 @@
+.form_add {
+    display: grid;
+    max-width: 800px;
+    min-width: 300px;
+    grid-auto-flow: row dense;
+}
+
+.input_field_container {
+    min-width: 200px;
+    max-width: 800px;
+}
+
+.form_add .input_field {
+    max-width: 800px;
+    min-width: 250px;
+    margin: 10px 0;
+    min-height: 30px;
+    padding: 0px 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+#submit {
+    color: #fff;
+    background: #1677ff;
+    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+    max-width: 275px;
+    min-width: 100px;
+    height: 35px;
+    border: 0px solid ;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#submit :hover {
+    background: #4096ff;
+    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+}
+
+#public {
+    margin: 10px;
+
+}
+
+.input_error {
+    color: #dc3545;
+}
