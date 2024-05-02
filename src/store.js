@@ -1,40 +1,43 @@
 import { create } from 'zustand'
 import axios from 'axios'
 
-export const useButomCountCard = create((set, get) => ({
-    quantityCard: 8,
+export const useButtonsLimit = create((set) => ({
+    limit: 8,
     typeDef: 'primary',
     typeNorm: 'default',
     typeMax: 'default',
     defaults: () => set((state) => ({ 
-        quantityCard: 8, 
+        limit: 8, 
         typeDef: 'primary',
         typeNorm: 'default',
         typeMax: 'default' 
     })),
     normal: () => set((state) => ({ 
-        quantityCard: 16, 
+        limit: 16, 
         typeDef: 'default',
         typeNorm: 'primary',
         typeMax: 'default' 
     })),
     max: () => set((state) => ({ 
-        quantityCard: 20, 
+        limit: 20, 
         typeDef: 'default',
         typeNorm: 'default',
         typeMax: 'primary' 
     })),
 }))
-
-export const useCards = create((set) => ({
+export const useCards = create((set, get) => ({
     cards: [],
     getCard: (limit, btn) => async (state) => { 
-        btn()
-        const res = await axios('https://fakestoreapi.com/products', {
-            method: 'GET',
-            params: {limit}
-        })
-        set({cards: res.data})         
+        try {
+            btn()
+            const res = await axios('https://fakestoreapi.com/products', {
+                method: 'GET',
+                params: {limit}
+            })
+            set({cards: res.data})         
+        } catch (error) {
+            console.error(error)
+        }
     },
     categories: [
         {
@@ -54,18 +57,43 @@ export const useCards = create((set) => ({
             label: "Women's clothing",
         },
     ],
-    getCategorues: () => async (state) => {
-        const res = await axios.get('https://fakestoreapi.com/products/categories')
-        console.log(res)
-        set({categories: res.data})
+    getCategorues: () => async (state) => { //TODO: Здесь нужно получить массив с категориями и привести его к виду - categiryes: []
+        try {
+            const res = await axios.get('https://fakestoreapi.com/products/categories')
+            console.log(res)
+            set({categories: res.data})
+        } catch (error) {
+            console.error(error)
+        }
     },
     selectCategory: (limit, category) => async (state) => {
-        const res = await axios(`https://fakestoreapi.com/products/category/${category}`, {
-            method: 'GET',
-            params: {limit}
-        })
-        console.log(res.data)
+        try {
+            const res = await axios(`https://fakestoreapi.com/products/category/${category}`, {
+                method: 'GET',
+                params: {limit}
+            })
+            console.log(res.data)
+        
+            set({cards: res.data})
+        } catch (error) {
+            console.error(error)
+        }
+    },
+    searchCard: (value) => async (state) => {
+        try {
+            const res = await axios('https://fakestoreapi.com/products', {
+                method: 'GET'
+            })
+            let i = 100
+            const lowValue = value.toLowerCase()
+            const newResult = res.data.filter(item => {
+                const title = item.title.toLowerCase()
+                return title.includes(lowValue)
+            })
     
-        set({cards: res.data})
+            set({cards: newResult})
+        } catch (error) {
+            console.error(error)
+        }
     }
 }))

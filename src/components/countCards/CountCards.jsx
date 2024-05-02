@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import { Button, Input, Space, Select } from "antd";
 import axios from "axios";
 
-import { useButomCountCard, useCards } from "../../store";
+import { useCards, useButtonsLimit } from "../../store";
 
 import CardProduct from '../cardProduct/CardProduct'
 
@@ -10,18 +10,18 @@ import './CountCards.css'
 
 const CountCards = (props) => {
 
-    const { quantityCard, typeDef, typeNorm, typeMax, defaults, normal, max } = useButomCountCard()
-    const { cards, getCard, categories, getCategorues, selectCategory } = useCards()
+    const { limit, typeDef, typeNorm, typeMax, defaults, normal, max } = useButtonsLimit()
+    const { cards, getCard, categories, getCategorues, selectCategory, searchCard } = useCards()
 
     const { Search } = Input
 
     const handleChange = (value) => {
         console.log(cards);
-        selectCategory(quantityCard, value)();
+        selectCategory(limit, value)();
       };
 
     const onSearch = (value, _e, info) => {
-        console.log(info?.source, value)
+        searchCard(value)();
     }
     
     const elements = cards.map(item => {
@@ -32,9 +32,9 @@ const CountCards = (props) => {
 
     useEffect(() => {
         console.log("Render component")
-        // console.log(categories)
-        getCard(quantityCard, defaults)();
-        // getCategorues;
+
+        getCard(limit, defaults)();
+        // getCategorues; //TODO: Не работате, похоже не корректный ответ от сервера.
       }, []);
 
     return (
@@ -42,9 +42,9 @@ const CountCards = (props) => {
             <div className="count_cards">
                 <div className="buttons">
                     <span>View: </span>
-                    <Button type={typeDef} onClick={ getCard(quantityCard, defaults) }> 8 </Button>
-                    <Button type={typeNorm} onClick={ getCard(quantityCard, normal) }> 16 </Button>
-                    <Button type={typeMax} onClick={ getCard(quantityCard, max) }> 20 </Button>
+                    <Button type={typeDef} onClick={ getCard(8, defaults) }> 8 </Button>
+                    <Button type={typeNorm} onClick={ getCard(16, normal) }> 16 </Button>
+                    <Button type={typeMax} onClick={ getCard(20, max) }> 20 </Button>
                 </div>
 
                 <Search
