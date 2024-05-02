@@ -17,7 +17,7 @@ export const useButomCountCard = create((set, get) => ({
         typeDef: 'default',
         typeNorm: 'primary',
         typeMax: 'default' 
-})),
+    })),
     max: () => set((state) => ({ 
         quantityCard: 20, 
         typeDef: 'default',
@@ -35,5 +35,37 @@ export const useCards = create((set) => ({
             params: {limit}
         })
         set({cards: res.data})         
+    },
+    categories: [
+        {
+            value: 'electronics',
+            label: 'Electronics',
+        },
+        {
+            value: 'jewelery',
+            label: 'Jewelery',
+        },
+        {
+            value: "men's clothing",
+            label: "Men's clothing",
+        },
+        {
+            value: "women's clothing",
+            label: "Women's clothing",
+        },
+    ],
+    getCategorues: () => async (state) => {
+        const res = await axios.get('https://fakestoreapi.com/products/categories')
+        console.log(res)
+        set({categories: res.data})
+    },
+    selectCategory: (limit, category) => async (state) => {
+        const res = await axios(`https://fakestoreapi.com/products/category/${category}`, {
+            method: 'GET',
+            params: {limit}
+        })
+        console.log(res.data)
+    
+        set({cards: res.data})
     }
 }))

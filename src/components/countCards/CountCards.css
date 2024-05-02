@@ -1,9 +1,18 @@
 .count_cards {
     display: grid; 
-    grid-template-columns: repeat(auto-fit, 50px);
-    grid-template-rows: auto;
+    grid-template-columns: repeat(auto-fit, 250px);
+    /* grid-auto-flow: row; */
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+.count_cards .buttons {
+    display: grid; 
+    grid-template-columns: 50px 50px 50px 50px;
     align-items: center;
     column-gap: 5px;
+    justify-content: space-between;
 }
 
 .products_container {

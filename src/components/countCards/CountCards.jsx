@@ -1,6 +1,5 @@
-import React from "react";
-import { Button, Input, Space } from "antd";
-import { AudioOutlined } from '@ant-design/icons';
+import React, {useEffect} from "react";
+import { Button, Input, Space, Select } from "antd";
 import axios from "axios";
 
 import { useButomCountCard, useCards } from "../../store";
@@ -12,16 +11,18 @@ import './CountCards.css'
 const CountCards = (props) => {
 
     const { quantityCard, typeDef, typeNorm, typeMax, defaults, normal, max } = useButomCountCard()
-    const { cards, getCard } = useCards()
+    const { cards, getCard, categories, getCategorues, selectCategory } = useCards()
 
     const { Search } = Input
+
+    const handleChange = (value) => {
+        console.log(cards);
+        selectCategory(quantityCard, value)();
+      };
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value)
     }
-
-    console.log(cards)
-    console.log(quantityCard)
     
     const elements = cards.map(item => {
         return(
@@ -29,21 +30,39 @@ const CountCards = (props) => {
         )
     })
 
+    useEffect(() => {
+        console.log("Render component")
+        // console.log(categories)
+        getCard(quantityCard, defaults)();
+        // getCategorues;
+      }, []);
+
     return (
         <div>
             <div className="count_cards">
-                <span>View: </span>
-                <Button type={typeDef} onClick={getCard(quantityCard, defaults)}> 8 </Button>
-                <Button type={typeNorm} onClick={getCard(quantityCard, normal)}> 16 </Button>
-                <Button type={typeMax} onClick={getCard(quantityCard, max)}> 20 </Button>
+                <div className="buttons">
+                    <span>View: </span>
+                    <Button type={typeDef} onClick={ getCard(quantityCard, defaults) }> 8 </Button>
+                    <Button type={typeNorm} onClick={ getCard(quantityCard, normal) }> 16 </Button>
+                    <Button type={typeMax} onClick={ getCard(quantityCard, max) }> 20 </Button>
+                </div>
 
                 <Search
                     placeholder="input search text"
                     allowClear
                     onSearch={onSearch}
                     style={{
-                        width: 200,
+                        minWidth: 200,
+                        maxWidth: 500
                     }}
+                />
+                <Select
+                    defaultValue="nothing"
+                    style={{
+                        width: 250,
+                    }}
+                    onChange={handleChange}
+                    options={categories}
                 />
             </div>
             <div className="products_container">
