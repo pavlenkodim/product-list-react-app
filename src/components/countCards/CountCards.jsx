@@ -1,5 +1,6 @@
 import React from "react";
-import { Button } from "antd";
+import { Button, Input, Space } from "antd";
+import { AudioOutlined } from '@ant-design/icons';
 import axios from "axios";
 
 import { useButomCountCard, useCards } from "../../store";
@@ -12,6 +13,12 @@ const CountCards = (props) => {
 
     const { quantityCard, typeDef, typeNorm, typeMax, defaults, normal, max } = useButomCountCard()
     const { cards, getCard } = useCards()
+
+    const { Search } = Input
+
+    const onSearch = (value, _e, info) => {
+        console.log(info?.source, value)
+    }
 
     console.log(cards)
     console.log(quantityCard)
@@ -29,6 +36,15 @@ const CountCards = (props) => {
                 <Button type={typeDef} onClick={getCard(quantityCard, defaults)}> 8 </Button>
                 <Button type={typeNorm} onClick={getCard(quantityCard, normal)}> 16 </Button>
                 <Button type={typeMax} onClick={getCard(quantityCard, max)}> 20 </Button>
+
+                <Search
+                    placeholder="input search text"
+                    allowClear
+                    onSearch={onSearch}
+                    style={{
+                        width: 200,
+                    }}
+                />
             </div>
             <div className="products_container">
                 {elements}
