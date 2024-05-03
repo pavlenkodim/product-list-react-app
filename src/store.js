@@ -53,6 +53,11 @@ export const useCards = create((set, get) => ({
                 }
             })
 
+            result.push({
+                value: '',
+                label: 'nothing'
+            })
+
             set({categories: result})
         } catch (error) {
             console.error(error)
@@ -60,7 +65,13 @@ export const useCards = create((set, get) => ({
     },
     selectCategory: (limit, category) => async (state) => {
         try {
-            const res = await axios(`https://fakestoreapi.com/products/category/${category}`, {
+            let url = `https://fakestoreapi.com/products/category/${category}`
+
+            if (!category) {
+                url = 'https://fakestoreapi.com/products'
+            }
+
+            const res = await axios(url, {
                 method: 'GET',
                 params: {limit}
             })
