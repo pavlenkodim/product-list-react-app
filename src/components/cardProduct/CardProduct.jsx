@@ -7,7 +7,7 @@ import './CardProduct.css'
 const CardProduct = ({ data }) => {
     return (
         <div className="card">
-            <Card style={{width: 250 }} cover={<img alt={data.title} src={data.image} style={{height: 300}}/>}> {/*TODO: Выровнить картинку по центру, а то мне так не нравится */}
+            <Card style={{width: 250 }} cover={<img alt={data.title} src={data.image} style={{height: 300}}/>}> 
                 <Meta title={data.title} description={data.category} />
                 <div>
                     <h2>{data.price} $</h2> 

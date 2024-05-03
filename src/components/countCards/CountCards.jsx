@@ -16,7 +16,6 @@ const CountCards = (props) => {
     const { Search } = Input
 
     const handleChange = (value) => {
-        console.log(cards);
         selectCategory(limit, value)();
       };
 
@@ -31,10 +30,8 @@ const CountCards = (props) => {
     })
 
     useEffect(() => {
-        console.log("Render component")
-
         getCard(limit, defaults)();
-        getCategorues()(); //TODO: Не работате, похоже не корректный ответ от сервера.
+        getCategorues()(); 
       }, []);
 
     return (
